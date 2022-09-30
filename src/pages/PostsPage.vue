@@ -1,10 +1,10 @@
 <template>
   <div class="posts">
 
-    <!-- SECTION: posts -->
+    <!-- SECTION: posts template -->
     <div class="container">
-      <div class="row mt-3">
-        <div class="col-md-4 card" id="PostCard">
+      <div class="row mt-4">
+        <div class="col-md-8 card" id="PostCard">
 
           <div class="card-header d-flex justify-content-between align-items-center">
             <i class="fa-regular fa-circle-user selectable"></i>
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+    <!-- STUB: posts template end -->
 
   </div>
 </template>
