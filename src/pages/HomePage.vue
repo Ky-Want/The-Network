@@ -1,14 +1,18 @@
 <template>
-  <div class="">
-    This is the Home page
-  </div>
+  <!-- SECTION: Posts cards -->
+  <PostsPage />
 </template>
 
+
+
+
 <script>
+import PostsPage from "./PostsPage.vue";
 export default {
   setup() {
-    return {}
-  }
+    return {};
+  },
+  components: { PostsPage }
 }
 </script>
 

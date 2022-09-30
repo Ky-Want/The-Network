@@ -1,15 +1,76 @@
 <template>
   <div class="posts">
-    <h1>This is the posts page</h1>
+
+    <!-- SECTION: posts -->
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col-md-4 card" id="PostCard">
+
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <i class="fa-regular fa-circle-user selectable"></i>
+            Post creator name
+            <i class="fa-solid fa-ellipsis selectable"></i>
+          </div>
+
+          <div class="card-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus placeat, maxime veniam ratione ea
+            molestias
+            unde quia? Dolor, deleniti culpa totam esse iste saepe aperiam nesciunt veniam quam expedita soluta?
+          </div>
+
+          <div class="card-footer d-flex justify-content-end align-items-center gap-2">
+            <i class="fa-regular fa-heart selectable pink"></i>
+            <i class="fa-solid fa-heart selectable dark-pink"></i>
+            <span>13</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
+
+
 <script>
+import { onMounted } from "vue";
+import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+
+
 export default {
   setup() {
-    return {
+    //   async function getPages() {
+    //     try {
+    //       await postsService.getPages()
+    //     } catch (error) {
+    //       Pop.error(error, '[Getting Pages]')
+    //     }
+    //   }
 
-    }
-  }
+    //   onMounted(() => {
+    //     getPosts();
+    //   });
+
+    //   return {
+    //     posts: computed(() => AppState.posts)
+    //   };
+  },
+
+  // components: { PostCard }
 }
 </script>
+
+
+
+
+<style>
+.pink {
+  color: pink;
+}
+
+.dark-pink {
+  color: rgb(253, 135, 155);
+}
+</style>
