@@ -16,13 +16,9 @@
     </button>
 
     <!-- SECTION: Post nav button -->
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'Posts' }" class="btn text-success lighten-30 selectable text-uppercase">
-            Posts
-          </router-link>
-        </li>
+    <div class="d-flex collapse navbar-collapse text-light navbar-nav me-auto justify-content-between" id="navbarText">
+      <ul>
+        The Network
       </ul>
 
       <!-- SECTION: search bar -->

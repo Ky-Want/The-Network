@@ -1,6 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Advert } from "../models/Advert.js"
-import { api } from "./AxiosService.js"
+import { api } from "./AxiosService.js";
 
 
 
@@ -8,8 +8,9 @@ class AdvertsService {
   async getAdverts() {
     AppState.adverts = [] // NOTE empty the adverts to avoid data flashing
     const res = await api.get('api/ads')
-    console.log("get my ads from the service", res.data);
     AppState.adverts = res.data.map(p => new Advert(p))
+
+    console.log("get my ads from the service", res.data);
   }
 
   async getAdvertsById(id) {

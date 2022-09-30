@@ -19,7 +19,7 @@
           </div>
 
           <div class="card-footer d-flex justify-content-end align-items-center gap-2">
-            <i class="fa-regular fa-heart selectable pink"></i>
+            <!-- <i class="fa-regular fa-heart selectable pink"></i> -->
             <i class="fa-solid fa-heart selectable dark-pink"></i>
             <span>13</span>
           </div>
@@ -35,31 +35,16 @@
 
 
 <script>
-import { onMounted } from "vue";
-import { AppState } from "../AppState.js";
-import Pop from "../utils/Pop.js";
+
 
 
 export default {
   setup() {
-    //   async function getPages() {
-    //     try {
-    //       await postsService.getPages()
-    //     } catch (error) {
-    //       Pop.error(error, '[Getting Pages]')
-    //     }
-    //   }
 
-    //   onMounted(() => {
-    //     getPosts();
-    //   });
+    return {
 
-    //   return {
-    //     posts: computed(() => AppState.posts)
-    //   };
-  },
-
-  // components: { PostCard }
+    }
+  }
 }
 </script>
 

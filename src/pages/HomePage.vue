@@ -1,44 +1,53 @@
 <template>
   <!-- SECTION: Posts cards -->
-  <Post />
+  <Post v-for="p in posts" :key="p.id" :post="p" />
 
 
   <!-- V-for over this component  -->
-  <Advert />
+  <Advert v-for="a in adverts" :key="a.id" :advert="a" />
 </template>
 
 
 
 
 <script>
-import Post from "./components/Post.vue";
-import Advert from "../components/Advert.vue";
 import Pop from "../utils/Pop.js";
 import { advertsService } from "../services/AdvertsService.js"
 import { onMounted } from "vue";
+import { AppState } from "../AppState.js";
+import { computed } from "@vue/reactivity";
+
+
 export default {
   setup() {
-    async function getAds() {
+    async function getAdverts() {
       try {
         await advertsService.getAdverts()
-
       } catch (error) {
         Pop.error(error, "Getting ads")
       }
     }
 
-    onMounted(() => {
-      getAds()
 
+    async function getPosts() {
+      try {
+        await postsService.getPosts()
+      } catch (error) {
+        Pop.error(error, "Getting ads")
+      }
+    }
+
+
+    onMounted(() => {
+      getAdverts()
+      getPosts()
     })
 
-
     return {
-
-
+      adverts: computed(() => AppState.adverts),
+      posts: computed(() => AppState.posts)
     };
   },
-  components: { Post, Advert }
 }
 </script>
 
