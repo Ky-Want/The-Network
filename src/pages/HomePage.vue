@@ -1,6 +1,6 @@
 <template>
   <!-- SECTION: Posts cards -->
-  <PostsPage />
+  <Post />
 
 
   <!-- V-for over this component  -->
@@ -11,7 +11,7 @@
 
 
 <script>
-import PostsPage from "./PostsPage.vue";
+import Post from "./components/Post.vue";
 import Advert from "../components/Advert.vue";
 import Pop from "../utils/Pop.js";
 import { advertsService } from "../services/AdvertsService.js"
@@ -38,7 +38,7 @@ export default {
 
     };
   },
-  components: { PostsPage, Advert }
+  components: { Post, Advert }
 }
 </script>
 

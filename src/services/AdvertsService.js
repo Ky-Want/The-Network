@@ -23,7 +23,6 @@ class AdvertsService {
     AppState.adverts = res.data.map(p => new Advert(p))
 
   }
-
 }
 
 export const advertsService = new AdvertsService()
