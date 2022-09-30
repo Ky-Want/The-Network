@@ -13,7 +13,9 @@
 
 
   <footer>
-    <PromotePage />
+    <div>
+      <AdvertPage />
+    </div>
   </footer>
 
 </template>
@@ -26,7 +28,7 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
-import PromotePage from "./pages/PromotePage.vue"
+import AdvertPage from "./pages/AdvertPage.vue"
 
 export default {
   setup() {
@@ -34,7 +36,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, PromotePage }
+  components: { Navbar, AdvertPage }
 }
 </script>
 <style lang="scss">

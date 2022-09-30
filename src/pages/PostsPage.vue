@@ -3,8 +3,8 @@
 
     <!-- SECTION: posts template -->
     <div class="container">
-      <div class="row mt-4">
-        <div class="col-md-8 card" id="PostCard">
+      <div class="row mt-4" id="PostCard">
+        <div class="col-md-8 card">
 
           <div class="card-header d-flex justify-content-between align-items-center">
             <i class="fa-regular fa-circle-user selectable"></i>
