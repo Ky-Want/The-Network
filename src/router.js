@@ -5,6 +5,7 @@ function loadPage(page) {
   return () => import(`./pages/${page}.vue`)
 }
 
+
 const routes = [
   {
     path: '/',
@@ -12,9 +13,9 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: loadPage('AboutPage')
+    path: '/posts',
+    name: 'Posts',
+    component: loadPage('PostsPage')
   },
   {
     path: '/account',
@@ -23,6 +24,8 @@ const routes = [
     beforeEnter: authGuard
   }
 ]
+
+
 
 export const router = createRouter({
   linkActiveClass: 'router-link-active',
