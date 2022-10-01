@@ -1,9 +1,6 @@
 <template>
-  <div class="row card">
-    <div class="col-md-9 card-body">
-      <img :src="advert.square" alt="This a advert img">
-
-    </div>
+  <div class="col-2 card">
+    <img :src="advert.tall" alt="This a advert img">
   </div>
 </template>
 

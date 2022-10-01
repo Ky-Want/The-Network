@@ -3,25 +3,24 @@
 
     <!-- SECTION: posts template -->
     <div class="container">
-      <div class="row mt-4" id="PostCard">
+      <div class="row mt-4">
         <div class="col-md-8 card">
 
           <div class="card-header d-flex justify-content-between align-items-center">
-            <i class="fa-regular fa-circle-user selectable"></i>
-            Post creator name
+            <!-- <i class="fa-regular fa-circle-user selectable"></i> -->
+            <img :src="post.creatorId" alt="creator pic">
+            {{post.name}}
             <i class="fa-solid fa-ellipsis selectable"></i>
           </div>
 
           <div class="card-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus placeat, maxime veniam ratione ea
-            molestias
-            unde quia? Dolor, deleniti culpa totam esse iste saepe aperiam nesciunt veniam quam expedita soluta?
+            {{post.body}}
           </div>
 
           <div class="card-footer d-flex justify-content-end align-items-center gap-2">
             <!-- <i class="fa-regular fa-heart selectable pink"></i> -->
             <i class="fa-solid fa-heart selectable dark-pink"></i>
-            <span>13</span>
+            <span>{{post.likeIds}}</span>
           </div>
 
         </div>
@@ -35,14 +34,21 @@
 
 
 <script>
-
+import { Post } from "../models/Post.js";
 
 
 export default {
+  props: {
+    post: {
+      type: Post,
+      required: true
+    }
+  },
+
+
   setup() {
 
     return {
-
     }
   }
 }
