@@ -38,6 +38,9 @@ export default {
         Pop.error(error, "Getting ads");
       }
     }
+
+
+
     async function getPosts() {
       try {
         await postsService.getPosts();

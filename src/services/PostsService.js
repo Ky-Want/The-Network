@@ -5,23 +5,33 @@ import { api } from "./AxiosService.js";
 
 class PostsService {
   async getPosts() {
-    AppState.posts = [] // NOTE empty the posts to avoid data flashing
     const res = await api.get('api/posts')
-    AppState.posts = res.data.map(p => new Post(p))
+    // AppState.posts = res.data.map(p => new Post(p))
 
-    console.log("Getting posts", res.data);
+    AppState.posts = Object.keys(res).map(key => {
+      return { [key]: res[key] };
+    });
+
+    console.log(AppState.posts);
   }
 
+
+  async deletePosts(id) {
+    const res = await api.delete(`api/posts/${id}`)
+    AppState.posts = AppState.posts.filter(p => p.id != id)
+  }
+
+
   async getPostsById(id) {
-    AppState.posts = [] // NOTE empty the posts to avoid data flashing
-    const res = await axios.get('api/posts', {
-      params: {
-        id
-      }
-    })
+    const res = await api.get(`/api/posts/${id}`)
+    AppState.activePost = new Post(res.data)
+  }
 
-    AppState.posts = res.data.map(p => new Post(p))
 
+  async createPost(id) {
+    const res = await api.post('/api/posts', formData)
+    AppState.posts.push(new Post(res.data))
+    // AppState.posts = [...AppState.posts, new Post(res.data)]
   }
 }
 

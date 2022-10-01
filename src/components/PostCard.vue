@@ -8,19 +8,20 @@
 
           <div class="card-header d-flex justify-content-between align-items-center">
             <!-- <i class="fa-regular fa-circle-user selectable"></i> -->
-            <img :src="post.creatorId" alt="creator pic">
-            {{post.name}}
+            <img src="imgUrl" alt="creator of the post">
+            posters name
             <i class="fa-solid fa-ellipsis selectable"></i>
           </div>
 
           <div class="card-body">
-            {{post.body}}
+            post body
+            <img src="imgUrl" alt="" class="img-fluid">
           </div>
 
           <div class="card-footer d-flex justify-content-end align-items-center gap-2">
             <!-- <i class="fa-regular fa-heart selectable pink"></i> -->
             <i class="fa-solid fa-heart selectable dark-pink"></i>
-            <span>{{post.likeIds}}</span>
+            <span>13</span>
           </div>
 
         </div>
@@ -34,18 +35,9 @@
 
 
 <script>
-import { Post } from "../models/Post.js";
 
 
 export default {
-  props: {
-    post: {
-      type: Post,
-      required: true
-    }
-  },
-
-
   setup() {
 
     return {
