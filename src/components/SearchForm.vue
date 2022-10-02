@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-3">
+  <div class="pt-3 pb-3">
     <form @submit.prevent="handleSubmit">
       <div class="input-group">
         <input type="text" class="form-control" required="true" minlength="2" placeholder="Find a post..." name="search"

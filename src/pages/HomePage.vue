@@ -10,17 +10,13 @@
       <!-- SECTION: Posts cards -->
       <PostCard v-for="p in posts" :key="p.id" :post="p" />
 
-      <i class="fa-solid fa-circle-plus d-flex justify-content-end sticky-bottom fs-3 pb-4 pt-2">
-      </i>
-
+      <CreatePost />
     </div>
 
-
-
     <div class="d-flex align-items-center pb-5">
-      <button class="btn btn-dark" :disabled="page == 1" @click="go(-1)">Previous</button>
+      <button type="button" class="btn btn-dark" :disabled="page == 1" @click="go(-1)">Previous</button>
       <h3 class="mx-3">{{page}}</h3>
-      <button class="btn btn-dark" :disabled="page == lastPage" @click="go(1)">Next</button>
+      <button type="button" class="btn btn-dark" :disabled="page == lastPage" @click="go(1)">Next</button>
     </div>
   </div>
 </template>
@@ -32,48 +28,16 @@ import { advertsService } from "../services/AdvertsService.js"
 import { onMounted } from "vue";
 import { AppState } from "../AppState.js";
 import { computed } from "@vue/reactivity";
-import AdvertCard from "../components/AdvertCard.vue";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
 import SearchForm from "../components/SearchForm.vue";
 import { logger } from "../utils/Logger.js";
+import AdvertCard from "../components/AdvertCard.vue";
+import CreatePost from "../components/CreatePost.vue";
 
 
 export default {
   setup() {
-    async function getTopPosts() {
-      try {
-        await postsService.getTopPosts()
-      } catch (error) {
-        logger.error('[GettingTopPosts]', error)
-        console.error('[GettingTopPosts]', error)
-        Pop.error(error)
-      }
-    }
-    getTopPosts()
-    return {
-      posts: computed(() => AppState.posts),
-      page: computed(() => AppState.page),
-      lastPage: computed(() => AppState.lastPage),
-      async go(p) {
-        try {
-          if (AppState.page == 1 && p == -1) { throw new Error('There are no more pages left.') }
-          if (!AppState.term) {
-            await postsService.getTopPosts(AppState.page + p)
-          } else {
-            await postsService.getPostsBySearchTerm(AppState.term, AppState.page + p)
-          }
-        } catch (error) {
-          logger.error('[GoNextOrMyPrevious]', error)
-          Pop.error(error)
-        }
-      }
-    }
-
-
-
-
-
     async function getAdverts() {
       try {
         await advertsService.getAdverts();
@@ -83,27 +47,66 @@ export default {
       }
     }
 
-
-
     async function getPosts() {
       try {
-        await postsService.getPosts();
-      }
-      catch (error) {
-        Pop.error(error, "Getting ads");
+        await postsService.getPosts()
+      } catch (error) {
+        logger.error('[GettingPosts]', error)
+        console.error('[GettingPosts]', error)
+        Pop.error(error)
       }
     }
+
     onMounted(() => {
       getAdverts();
       getPosts();
     });
+
     return {
       adverts: computed(() => AppState.adverts),
-      posts: computed(() => AppState.posts)
-    };
+      posts: computed(() => AppState.posts),
+
+      page: computed(() => AppState.page),
+      lastPage: computed(() => AppState.lastPage),
+
+
+      async deletePost(id) {
+        try {
+          const yes = await Pop.confirm('Delete the Listing?')
+          if (!yes) { return }
+          await postsService.deletePost(id)
+        } catch (error) {
+          Pop.error(error, '[Deleting Post]')
+          Pop.confirm(confirm, '[Are you sure you want to delete this post]')
+        }
+      },
+
+
+      async createPost(id) {
+        const res = await api.post('/api/posts', formData)
+        AppState.posts.push(new Post(res.data))
+
+        console.log('creating post: ', createPost(id));
+      },
+
+
+      async go(n) {
+        try {
+          if (AppState.page == 1 && n == -1) { throw new Error('You have reached the end') }
+          if (!AppState.term) {
+            await postsService.getPosts(AppState.page + n)
+          } else {
+            await postsService.getPostsBySearchTerm(AppState.term, AppState.page + n)
+          }
+        } catch (error) {
+          logger.error('[GoNextOrPrevious]', error)
+          Pop.error(error)
+        }
+      }
+    }
   },
-  components: { AdvertCard, PostCard, SearchForm }
-}
+  components: { SearchForm, AdvertCard, PostCard, CreatePost }
+};
 </script>
 
 

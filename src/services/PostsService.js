@@ -4,16 +4,16 @@ import { api } from "./AxiosService.js";
 
 
 class PostsService {
-  async getPosts() {
-    AppState.posts = []
-    const res = await api.get('api/posts')
-    console.log("Getting posts", res.data);
+  // async getPosts() {
+  //   AppState.posts = []
+  //   const res = await api.get('api/posts')
+  //   console.log("Getting posts", res.data);
 
-    AppState.posts = res.data.posts.map(p => new Post(p))
-  }
+  //   AppState.posts = res.data.posts.map(p => new Post(p))
+  // }
 
 
-  async deletePosts(id) {
+  async deletePost(id) {
     const res = await api.delete(`api/posts/${id}`)
     AppState.posts = AppState.posts.filter(p => p.id != id)
   }
@@ -26,15 +26,18 @@ class PostsService {
   }
 
 
-  async createPost(id) {
+  async createPost(formData) {
     const res = await api.post('/api/posts', formData)
     AppState.posts.push(new Post(res.data))
+
+    console.log('creating post: ', createPost(formData));
     // AppState.posts = [...AppState.posts, new Post(res.data)]
   }
 
 
-  async getTopPosts(page = 1) {
-    const res = await api.get('/api/posts?page=', {
+  async getPosts(page = 1) {
+    AppState.posts = []
+    const res = await api.get('/api/posts', {
       params: {
         page
       }
@@ -42,6 +45,8 @@ class PostsService {
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = res.data.page
     AppState.lastPage = res.data.total_pages
+
+    console.log("Getting posts", res.data);
   }
 
 
