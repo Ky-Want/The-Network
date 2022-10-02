@@ -1,7 +1,5 @@
 <template>
-  <div class="col-2 card">
-    <img :src="advert.tall" alt="This a advert img">
-  </div>
+  <img :src="advert.banner" alt="This a advert img">
 </template>
 
 

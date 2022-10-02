@@ -8,9 +8,9 @@ class AdvertsService {
   async getAdverts() {
     AppState.adverts = [] // NOTE empty the adverts to avoid data flashing
     const res = await api.get('api/ads')
-    AppState.adverts = res.data.map(p => new Advert(p))
+    AppState.adverts = res.data.map(a => new Advert(a))
 
-    console.log("get my ads from the service", res.data);
+    console.log("Getting ads from service", res.data);
   }
 
   async getAdvertsById(id) {

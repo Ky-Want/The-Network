@@ -21,9 +21,8 @@
         The Network
       </ul>
 
-      <!-- SECTION: search bar -->
-      <!-- TODO: include search (filter probably) function -->
-      <div class="mx-5">
+
+      <!-- <div class="mx-5">
         <div class="input-group flex-nowrap" style="width: 40vw">
           <span class="input-group-text selectable" id="addon-wrapping">
             <img
@@ -33,7 +32,7 @@
           <input type="text" class="form-control" placeholder="Search" aria-label="Search"
             aria-describedby="addon-wrapping">
         </div>
-      </div>
+      </div> -->
 
       <!-- LOGIN COMPONENT HERE -->
       <Login />
