@@ -44,7 +44,7 @@
 
         <!-- SECTION: likes + number of likes -->
         <div class="card-footer d-flex justify-content-end align-items-center gap-2">
-          <i class="fa-solid fa-heart selectable dark-pink" @click="like(post.likeIds)"></i>
+          <i class="fa-solid fa-heart selectable dark-pink" @click="like"></i>
           <span>{{post.likeIds.length}}</span>
         </div>
 
@@ -78,12 +78,13 @@ export default {
   },
 
 
-  setup() {
-    onMounted(() => {
-    })
-
+  setup(props) {
     return {
       account: computed(() => AppState.account),
+
+
+
+
       async deletePost(id) {
         try {
           await Pop.confirm('Are you sure you want to delete this post?')
@@ -93,9 +94,14 @@ export default {
         }
       },
 
-      account: computed(() => AppState.account),
-      async like(likeIds) {
-        await postsService.like(likeIds)
+
+      async like() {
+        try {
+          //TODO: access props in set up, pass post id to service
+          await postsService.like(props.post.id)
+        } catch (error) {
+          console.error('liking post', error)
+        }
       }
     }
   }

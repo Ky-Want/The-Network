@@ -3,28 +3,22 @@
     <img :src="profile.picture" alt="" height="120">
     <div class="my-5">
       <h3 class="">{{ profile.name }}
-
-        <div>
-          <!-- <a v-if="profile.graduated" :href="profile.github"><i class="fa-solid fa-graduation-cap"></i></a> -->
-
-          <a v-if="profile.github" :href="profile.github" target="_blank"> -->
-            <i class="fa-brands fa-github selectable"></i>
-          </a>
-
-          <a v-if="profile.email" :href="profile.email" target="_blank"> -->
-            <i class=" fa-solid fa-envelope selectable"></i>
-          </a>
-
-          <a v-if="profile.linkedin" :href="profile.linkedin" target="_blank"> -->
-            <i class="fa-brands fa-linkedin selectable"></i>
-          </a>
-        </div>
-
+        <div v-if="profile.graduated"><i class="fa-solid fa-graduation-cap"></i></div>
       </h3>
+
+      <div class="d-flex justify-content-center gap-5 fs-3">
+        <a v-if="profile.github" :href="profile.github" target="_blank"> -->
+          <i class="fa-brands fa-github selectable"></i>
+        </a>
+
+        <a v-if="profile.linkedin" :href="profile.linkedin" target="_blank"> -->
+          <i class="fa-brands fa-linkedin selectable"></i>
+        </a>
+      </div>
+
       <p>{{profile.class}}</p>
       <p>{{ profile.bio }}</p>
     </div>
-
   </div>
 </template>
 

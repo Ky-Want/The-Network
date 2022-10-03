@@ -88,12 +88,19 @@ class PostsService {
   }
 
 
-  async like(likeIds) {
-    if (AppState.posts.find(m => m.id == likeIds.id)) {
-      throw new Error('You already liked it....')
-    }
-    AppState.posts.push(likeIds)
-    saveState('post', AppState.posts)
+  async like(postId) {
+    // logger.log('liking', postId)
+
+
+
+    const res = await api.post(`api/posts/${postId}/like`)
+
+    const post = new Post(res.data) // this is the post
+    const postIndex = AppState.posts.findIndex(p => p.id == postId)
+    // go to the post in the array and replace it with the updated one from the server
+    AppState.posts.splice(postIndex, 1, post)
+
+
   }
 }
 
