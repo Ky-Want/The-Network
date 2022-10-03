@@ -5,15 +5,6 @@ import { api } from "./AxiosService.js";
 
 
 class PostsService {
-  // async getPosts() {
-  //   AppState.posts = []
-  //   const res = await api.get('api/posts')
-  //   console.log("Getting posts", res.data);
-
-  //   AppState.posts = res.data.posts.map(p => new Post(p))
-  // }
-
-
   async deletePost(id) {
     const res = await api.delete(`api/posts/${id}`)
     AppState.posts = AppState.posts.filter(c => c.id != id)
@@ -53,7 +44,7 @@ class PostsService {
 
 
   async getPostsBySearchTerm(term, page = 1) {
-    const res = await api.get('api/posts?query=', {
+    const res = await api.get('api/posts', {
       params: {
         query: term,
         page

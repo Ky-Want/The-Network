@@ -45,7 +45,6 @@ export default {
       async handleSubmit() {
         try {
           const formData = editable.value
-          debugger
           await postsService.createPost(formData)
           editable.value = {}
         } catch (error) {

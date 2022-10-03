@@ -6,12 +6,12 @@
 
         <div class="card-header d-flex justify-content-between align-items-center">
           <!-- SECTION: post creators picture + name of the post -->
-          <!-- <router-link :to="{ name: 'Profile' }"> -->
-          <div>
-            <img :src="post.creator.picture" alt="creator of the post (img)" class="img-fluid creator-pic rounded">
-            {{post.creator.name}}
-          </div>
-          <!-- </router-link> -->
+          <router-link :to="{ name: 'Profile', params: {id: post.creator.id} }">
+            <div>
+              <img :src="post.creator.picture" alt="creator of the post (img)" class="img-fluid creator-pic rounded">
+              {{post.creator.name}}
+            </div>
+          </router-link>
 
           {{post.name}}
 
@@ -19,16 +19,10 @@
             {{post.creator.updatedAt || post.creator.createdAt}}
           </div>
 
-          <!-- SECTION: edit icon/modal -->
-          <i class="fa-solid fa-pen-to-square selectable">
-            <!-- data-bs-toggle="modal" data-bs-target="#editModal"
-            data-bs-whatever="@mdo" -->
-          </i>
-
 
           <!-- SECTION: edit modal -->
           <div class="d-flex gap-4">
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <!--   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -37,9 +31,11 @@
                   </div>
                   <div class="modal-body">
                     <form>
-                      <div class="mb-3">
-                        <label for="message-text" class="col-form-label"></label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                      <div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label"></label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -49,16 +45,16 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- SECTION: delete icon -->
-            <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click.stop="$emit('deletePost')"></i>
+            <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click="deletePost(post.id)"></i>
           </div>
         </div>
 
 
         <!-- SECTION: post text + image -->
-        <div class="row mx-3">
+        <div class=" row mx-3">
           {{post.body}}
         </div>
         <div class="col-9 card-body">
@@ -85,7 +81,7 @@ import { onMounted } from "vue";
 import { AppState } from "../AppState.js";
 import { Account } from "../models/Account.js";
 import { Post } from "../models/Post.js";
-
+import { postsService } from "../services/PostsService.js"
 
 
 export default {
@@ -102,13 +98,13 @@ export default {
 
   setup(props, { emit }) {
     onMounted(() => {
-      console.log('Neat, huh?');
     })
 
     return {
       account: computed(() => AppState.account),
-      deletePost() {
-        emit('deletePost')
+      async deletePost(id) {
+        // emit('deletePost')
+        await postsService.deletePost(id)
       }
     }
   }
