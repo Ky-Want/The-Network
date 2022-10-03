@@ -21,19 +21,6 @@
         The Network
       </ul>
 
-
-      <!-- <div class="mx-5">
-        <div class="input-group flex-nowrap" style="width: 40vw">
-          <span class="input-group-text selectable" id="addon-wrapping">
-            <img
-              src="https://toppng.com/uploads/preview/magnifying-glass-icon-no-background-magnifying-glass-icon-with-transparent-background-11553405953lli.png"
-              alt="search logo" class="img-fluid search">
-          </span>
-          <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-            aria-describedby="addon-wrapping">
-        </div>
-      </div> -->
-
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>

@@ -6,10 +6,12 @@
 
         <div class="card-header d-flex justify-content-between align-items-center">
           <!-- SECTION: post creators picture + name of the post -->
+          <!-- <router-link :to="{ name: 'Profile' }"> -->
           <div>
             <img :src="post.creator.picture" alt="creator of the post (img)" class="img-fluid creator-pic rounded">
             {{post.creator.name}}
           </div>
+          <!-- </router-link> -->
 
           {{post.name}}
 
@@ -26,7 +28,7 @@
 
           <!-- SECTION: edit modal -->
           <div class="d-flex gap-4">
-            <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -47,12 +49,10 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
 
             <!-- SECTION: delete icon -->
-            <i class="fa-solid fa-trash-can">
-              <!-- @click.stop="$emit('deletePost')" v-if="account.id == creator.id" -->
-            </i>
+            <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click.stop="$emit('deletePost')"></i>
           </div>
         </div>
 
