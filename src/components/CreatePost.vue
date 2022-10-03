@@ -12,7 +12,7 @@
         <div class="offcanvas-body">
           <div>
             <label for="post-body" class="col-form-label"></label>
-            <textarea v-model="editable.body" class="form-control" id="post-body" required
+            <textarea v-model="editable.body" class="form-control" id="post-body"
               placeholder="What would you like to say?"></textarea>
           </div>
 
@@ -21,9 +21,9 @@
             <input type="url" class="form-control" id="imgUrl" placeholder="URL" v-model="editable.imgUrl">
           </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <button class="mb-5" type="submit" style=" width: 20vw;">Post</button>
-        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="mb-5" type="submit" style=" width: 20vw;">Post</button>
       </div>
     </div>
   </form>

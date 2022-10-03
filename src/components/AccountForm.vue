@@ -14,8 +14,12 @@
         <input type="url" class="form-control" v-model="editable.coverImg" name="coverImg">
       </div>
       <div>
-        <label for="coverImg">Deviant Art:</label>
+        <label for="github">Github:</label>
         <input type="url" class="form-control" v-model="editable.github" name="Deviations">
+      </div>
+      <div>
+        <label for="class">Class:</label>
+        <input type="text" class="form-control" v-model="editable.class" name="class">
       </div>
       <div>
         <label for="bio">Bio:</label>
@@ -50,7 +54,6 @@ export default {
       editable,
       async handleSubmit() {
         try {
-          // FIXME: v ---- isn't even hitting accountService for some reason
           await accountService.editAccount(editable.value)
         } catch (error) {
           Pop.error(error, '[EditAccount]')

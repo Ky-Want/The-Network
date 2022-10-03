@@ -4,7 +4,7 @@
     <div class="my-5">
       <h3 class="">{{ profile.name }}
 
-        <a v-if="profile.github" :href="profile.github" target="_blank">
+        <a v-if="profile.github" :href="profile.github" target="_blank"> -->
           <i class="mdi mdi-deviantArt selectable"></i>
         </a>
 
@@ -18,6 +18,8 @@
 
 <script>
 import { Account } from '../models/Account.js';
+
+
 export default {
   props: {
     profile: {

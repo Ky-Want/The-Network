@@ -5,12 +5,7 @@
 
       <ProfileDetails :profile="account" />
 
-      <img class="rounded" :src="account.picture" :alt="account.name" />
-
       <AccountForm class="elevation-2" />
-
-      <p>{{ account.email }}</p>
-      <div>{{ account.bio }}</div>
     </div>
   </div>
 </template>
@@ -21,6 +16,7 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import ProfileDetails from "../components/ProfileDetails.vue";
+import AccountForm from "../components/AccountForm.vue";
 
 
 export default {
@@ -29,7 +25,7 @@ export default {
       account: computed(() => AppState.account)
     };
   },
-  components: { ProfileDetails }
+  components: { ProfileDetails, AccountForm }
 }
 console.log('account page log');
 </script>

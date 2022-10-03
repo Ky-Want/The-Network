@@ -7,5 +7,6 @@ export class Account {
     this.bio = data.bio
     this.coverImg = data.coverImg
     this.github = data.github
+    this.class = data.class
   }
 }

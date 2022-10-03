@@ -13,7 +13,7 @@ class PostsService {
 
   async getPostsById(id) {
     AppState.adverts = []
-    const res = await api.get(`/api/posts/${id}`)
+    const res = await api.get(`/api/profiles/${id}/posts`)
     AppState.activePost = new Post(res.data)
   }
 
@@ -30,7 +30,7 @@ class PostsService {
 
   async getPosts(page = 1) {
     AppState.posts = []
-    const res = await api.get('/api/posts', {
+    const res = await api.get('/api/posts?page', {
       params: {
         page
       }
