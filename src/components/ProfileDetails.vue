@@ -5,10 +5,11 @@
       <h3 class="">{{ profile.name }}
 
         <a v-if="profile.github" :href="profile.github" target="_blank"> -->
-          <i class="mdi mdi-deviantArt selectable"></i>
+          <i class="mdi mdi-deviantart selectable"></i>
         </a>
 
       </h3>
+      <p>{{profile.class}}</p>
       <p>{{ profile.bio }}</p>
     </div>
 

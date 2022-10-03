@@ -14,9 +14,13 @@
     </div>
 
     <div class="d-flex align-items-center pb-5">
-      <button type="button" class="btn btn-dark" :disabled="page == 1" @click="go(-1)">Previous</button>
+      <button @click="changePage(previousPage)" :disabled="page == 1" class="btn btn-dark me-2"
+        :class="{'disabled' : !previousPage}">Previous</button>
+
       <h3 class="mx-3">{{page}}</h3>
-      <button type="button" class="btn btn-dark" :disabled="page == lastPage" @click="go(1)">Next</button>
+
+      <button @click="changePage(nextPage)" :disabled="page == lastPage"
+        :class="`btn btn-dark ${!nextPage ? 'btn-info' : ''}`">Next</button>
     </div>
   </div>
 </template>
@@ -68,6 +72,19 @@ export default {
 
       page: computed(() => AppState.page),
       lastPage: computed(() => AppState.lastPage),
+
+      nextPage: computed(() => AppState.nextPage),
+      previousPage: computed(() => AppState.previousPage),
+
+
+      async changePage(pageUrl) {
+        try {
+          await postsService.getPosts(pageUrl)
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      },
 
 
       async deletePost(id) {

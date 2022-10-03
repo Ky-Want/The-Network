@@ -24,4 +24,7 @@ export const AppState = reactive({
 
   /** @type {import('./models/Advert.js').Advert} */
   profile: {},
+
+  nextPage: null,
+  previousPage: null
 })

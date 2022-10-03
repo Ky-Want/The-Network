@@ -5,22 +5,27 @@
         <label for="name">Name:</label>
         <input type="text" class="form-control" v-model="editable.name" required name="name">
       </div>
+
       <div>
         <label for="picture">Picture:</label>
         <input type="url" class="form-control" v-model="editable.picture" required name="picture" placeholder="picture">
       </div>
+
       <div>
         <label for="coverImg">Cover Image:</label>
         <input type="url" class="form-control" v-model="editable.coverImg" name="coverImg">
       </div>
+
       <div>
-        <label for="github">Github:</label>
+        <label for="github">Github Link:</label>
         <input type="url" class="form-control" v-model="editable.github" name="Deviations">
       </div>
+
       <div>
         <label for="class">Class:</label>
         <input type="text" class="form-control" v-model="editable.class" name="class">
       </div>
+
       <div>
         <label for="bio">Bio:</label>
         <textarea type="text" class="form-control" v-model="editable.bio" name="bio" rows="8"

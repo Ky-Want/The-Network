@@ -63,6 +63,7 @@ import { AppState } from "../AppState.js";
 import { Account } from "../models/Account.js";
 import { Post } from "../models/Post.js";
 import { postsService } from "../services/PostsService.js"
+import Pop from "../utils/Pop.js";
 
 
 export default {
@@ -84,8 +85,12 @@ export default {
     return {
       account: computed(() => AppState.account),
       async deletePost(id) {
-        // emit('deletePost')
-        await postsService.deletePost(id)
+        try {
+          await Pop.confirm('Are you sure you want to delete this post?')
+          await postsService.deletePost(id)
+        } catch (error) {
+          console.error('deleting post', error)
+        }
       },
 
       account: computed(() => AppState.account),
