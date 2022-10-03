@@ -18,13 +18,15 @@
           </div>
 
           <!-- SECTION: edit icon/modal -->
-          <!-- TODO: make sure modal doesn't close on it's own and saves changes properly -->
-          <i class="fa-solid fa-pen-to-square selectable" data-bs-toggle="modal" data-bs-target="#editModal"
-            data-bs-whatever="@mdo">
+          <i class="fa-solid fa-pen-to-square selectable">
+            <!-- data-bs-toggle="modal" data-bs-target="#editModal"
+            data-bs-whatever="@mdo" -->
           </i>
 
+
+          <!-- SECTION: edit modal -->
           <div class="d-flex gap-4">
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -45,10 +47,12 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- SECTION: delete icon -->
-            <i class="fa-solid fa-trash-can selectable" @click="deletePost(post.id)"></i>
+            <i class="fa-solid fa-trash-can">
+              <!-- @click.stop="$emit('deletePost')" v-if="account.id == creator.id" -->
+            </i>
           </div>
         </div>
 
@@ -63,7 +67,6 @@
 
         <!-- SECTION: likes + number of likes -->
         <div class="card-footer d-flex justify-content-end align-items-center gap-2">
-          <!-- <i class="fa-regular fa-heart selectable pink"></i> -->
           <i class="fa-solid fa-heart selectable dark-pink"></i>
           <span>{{post.likeIds.length}}</span>
         </div>
@@ -72,12 +75,14 @@
     </div>
   </div>
 </template>
-  
 
 
 
 
 <script>
+import { computed } from "@vue/reactivity";
+import { onMounted } from "vue";
+import { AppState } from "../AppState.js";
 import { Account } from "../models/Account.js";
 import { Post } from "../models/Post.js";
 
@@ -95,9 +100,16 @@ export default {
   },
 
 
-  setup() {
+  setup(props, { emit }) {
+    onMounted(() => {
+      console.log('Neat, huh?');
+    })
 
     return {
+      account: computed(() => AppState.account),
+      deletePost() {
+        emit('deletePost')
+      }
     }
   }
 }
