@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js";
+import { logger } from "../utils/Logger.js";
 import { api } from "./AxiosService.js";
 
 
@@ -27,10 +28,11 @@ class PostsService {
 
 
   async createPost(formData) {
+    logger.log('create')
     const res = await api.post('/api/posts', formData)
     AppState.posts.push(new Post(res.data))
 
-    console.log('creating post: ', createPost(formData));
+    console.log('creating post: ');
     // AppState.posts = [...AppState.posts, new Post(res.data)]
   }
 

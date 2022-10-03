@@ -12,16 +12,17 @@
         <div class="offcanvas-body">
           <div>
             <label for="post-body" class="col-form-label"></label>
-            <textarea class="form-control" id="post-body" required placeholder="What would you like to say?"></textarea>
+            <textarea v-model="editable.body" class="form-control" id="post-body" required
+              placeholder="What would you like to say?"></textarea>
           </div>
 
           <div>
             <label for="imgUrl" class="form-label"></label>
-            <input type="url" class="form-control" id="imgUrl" placeholder="URL">
+            <input type="url" class="form-control" id="imgUrl" placeholder="URL" v-model="editable.imgUrl">
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <button class="mb-5" type="submit" @submit="createPost()" style="width: 20vw;">Post</button>
+          <button class="mb-5" type="submit" style=" width: 20vw;">Post</button>
         </div>
       </div>
     </div>
@@ -32,23 +33,21 @@
 <script>
 import { ref } from "vue"
 import { postsService } from "../services/PostsService.js"
+
 import Pop from "../utils/Pop.js"
 
 
 export default {
   setup() {
-    const editable = ref({
-      listing: {}
-    })
+    const editable = ref({})
     return {
       editable,
       async handleSubmit() {
         try {
           const formData = editable.value
+          debugger
           await postsService.createPost(formData)
-          editable.value = {
-            listing: {}
-          }
+          editable.value = {}
         } catch (error) {
           Pop.error(error, '[Submitting Form]')
         }
