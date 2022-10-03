@@ -26,6 +26,7 @@ import Pop from '../utils/Pop.js';
 export default {
   setup() {
     const route = useRoute();
+
     async function getProfileById() {
       try {
         await profileService.getProfileById(route.params.id);
