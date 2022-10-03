@@ -24,7 +24,7 @@
 
 
           <!-- SECTION: delete icon -->
-          <div class="d-flex gap-4">
+          <div class="d-flex gap-4" v-if="account.id == post.creatorId">
             <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click="deletePost(post.id)"></i>
           </div>
         </div>

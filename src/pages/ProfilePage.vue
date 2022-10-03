@@ -2,11 +2,18 @@
   <div class="profile-page" v-if="profile">
     <ProfileDetails :profile="profile" />
     <div>
-      <PostCard v-for="p in posts" :post="p" :key="p.id" />
+      <PostCard v-for="p in profilePosts" :post="p" :key="p.id" />
     </div>
   </div>
   <div v-else>
     loading....
+  </div>
+  <div class="d-flex align-items-center pb-5 mx-3 mt-3">
+    <button @click="changeProfilePage(previousPage)" :disabled="page == 1" class="btn btn-dark me-2"
+      :class="{'disabled' : !previousPage}">Previous</button>
+
+    <button @click="changeProfilePage(nextPage)" :disabled="page == lastPage"
+      :class="`btn btn-dark ${!nextPage ? 'btn-info' : ''}`">Next</button>
   </div>
 </template>
 
@@ -52,7 +59,23 @@ export default {
     });
     return {
       profile: computed(() => AppState.activeProfile),
-      posts: computed(() => AppState.posts)
+      profilePosts: computed(() => AppState.activePost),
+
+      page: computed(() => AppState.page),
+      lastPage: computed(() => AppState.lastPage),
+
+      nextPage: computed(() => AppState.profileNextPage),
+      previousPage: computed(() => AppState.profilePreviousPage),
+
+
+      async changeProfilePage(pageUrl) {
+        try {
+          await postsService.changeProfilePage(pageUrl)
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      },
     };
   },
   components: { PostCard, ProfileDetails }

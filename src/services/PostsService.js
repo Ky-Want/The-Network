@@ -15,7 +15,11 @@ class PostsService {
   async getPostsById(id) {
     AppState.adverts = []
     const res = await api.get(`/api/profiles/${id}/posts`)
-    AppState.activePost = new Post(res.data)
+    console.log('ricky profile posts', res.data)
+    // AppState.activePost = new Post(res.data)
+    AppState.activePost = res.data.posts.map(p => new Post(p))
+    AppState.profileNextPage = res.data.older
+    AppState.profilePreviousPage = res.data.newer
   }
 
 
@@ -29,7 +33,7 @@ class PostsService {
   }
 
 
-  async getPosts(page = 1) {
+  async getPosts(page) {
     AppState.posts = []
     const res = await api.get('/api/posts?page', {
       params: {
@@ -39,9 +43,35 @@ class PostsService {
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = res.data.page
     AppState.lastPage = res.data.total_pages
+    AppState.nextPage = res.data.older
+    AppState.previousPage = res.data.newer
 
     console.log("Getting posts", res.data);
   }
+
+
+  async changePage(pageUrl) {
+    const res = await api.get(pageUrl)
+    logger.log(res.data)
+    AppState.posts = res.data.posts.map(p => new Post(p))
+    AppState.page = res.data.page
+
+    AppState.nextPage = res.data.older
+    AppState.previousPage = res.data.newer
+  }
+
+
+
+  async changeProfilePage(pageUrl) {
+    const res = await api.get(pageUrl)
+    logger.log(res.data)
+    AppState.activePost = res.data.posts.map(p => new Post(p))
+    AppState.page = res.data.page
+
+    AppState.profileNextPage = res.data.older
+    AppState.profilePreviousPage = res.data.newer
+  }
+
 
 
   async getPostsBySearchTerm(term, page = 1) {

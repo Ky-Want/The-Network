@@ -22,6 +22,29 @@
       </div>
 
       <div>
+        <label for="email">Email Link:</label>
+        <input type="url" class="form-control" v-model="editable.email" name="Deviations">
+      </div>
+
+      <!-- <div>
+        <label for="graduated">Graduated?</label>
+        <input type="boolean" class="form-control" v-model="editable.graduated" name="Deviations">
+      </div> -->
+
+      <div class="form-check">
+        <input class="form-check-input" type="boolean" name="flexRadioDefault" id="graduated">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Graduated
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="boolean" name="flexRadioDefault" id="notGraduated" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Not Graduated
+        </label>
+      </div>
+
+      <div>
         <label for="class">Class:</label>
         <input type="text" class="form-control" v-model="editable.class" name="class">
       </div>

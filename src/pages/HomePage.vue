@@ -79,7 +79,7 @@ export default {
 
       async changePage(pageUrl) {
         try {
-          await postsService.getPosts(pageUrl)
+          await postsService.changePage(pageUrl)
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)

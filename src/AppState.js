@@ -10,8 +10,8 @@ export const AppState = reactive({
   /** @type {import('./models/Post.js').Post[]} */
   posts: [],
 
-  /** @type {import('./models/Post.js').Post | null} */
-  activePost: null,
+  /** @type {import('./models/Post.js').Post[]} */
+  activePost: [],
 
 
   /** @type {import('./models/Advert.js').Advert} */
@@ -24,6 +24,9 @@ export const AppState = reactive({
 
   /** @type {import('./models/Advert.js').Advert} */
   profile: {},
+
+  profileNextPage: null,
+  profilePreviousPage: null,
 
   nextPage: null,
   previousPage: null
