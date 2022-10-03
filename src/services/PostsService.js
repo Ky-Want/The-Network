@@ -55,6 +55,15 @@ class PostsService {
     AppState.lastPage = res.data.total_pages
     AppState.term = term
   }
+
+
+  async like(likeIds) {
+    if (AppState.posts.find(m => m.id == likeIds.id)) {
+      throw new Error('You already liked it....')
+    }
+    AppState.posts.push(likeIds)
+    saveState('post', AppState.posts)
+  }
 }
 
 

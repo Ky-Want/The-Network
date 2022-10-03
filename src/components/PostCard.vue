@@ -3,8 +3,10 @@
   <div class="container">
     <div class="row mt-4">
       <div class="col-md-12 card elevation-4">
-
         <div class="card-header d-flex justify-content-between align-items-center">
+
+
+
           <!-- SECTION: post creators picture + name of the post -->
           <router-link :to="{ name: 'Profile', params: {id: post.creator.id} }">
             <div>
@@ -13,44 +15,21 @@
             </div>
           </router-link>
 
-          {{post.name}}
 
+          {{post.name}}
           <div>
             {{post.creator.updatedAt || post.creator.createdAt}}
           </div>
 
 
-          <!-- SECTION: edit modal -->
-          <div class="d-flex gap-4">
-            <!--   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div>
-                        <div class="mb-3">
-                          <label for="message-text" class="col-form-label"></label>
-                          <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Changes</button>
-                  </div>
-                </div>
-              </div>
-            </div> -->
 
-            <!-- SECTION: delete icon -->
+          <!-- SECTION: delete icon -->
+          <div class="d-flex gap-4">
             <i class="mdi mdi-delete-forever fs-4 selectable rounded" @click="deletePost(post.id)"></i>
           </div>
         </div>
+
+
 
 
         <!-- SECTION: post text + image -->
@@ -61,9 +40,11 @@
           <img :src="post.imgUrl" alt="" class="img-fluid post-pic">
         </div>
 
+
+
         <!-- SECTION: likes + number of likes -->
         <div class="card-footer d-flex justify-content-end align-items-center gap-2">
-          <i class="fa-solid fa-heart selectable dark-pink"></i>
+          <i class="fa-solid fa-heart selectable dark-pink" @click="like(post.likeIds)"></i>
           <span>{{post.likeIds.length}}</span>
         </div>
 
@@ -96,7 +77,7 @@ export default {
   },
 
 
-  setup(props, { emit }) {
+  setup() {
     onMounted(() => {
     })
 
@@ -105,6 +86,11 @@ export default {
       async deletePost(id) {
         // emit('deletePost')
         await postsService.deletePost(id)
+      },
+
+      account: computed(() => AppState.account),
+      async like(likeIds) {
+        await postsService.like(likeIds)
       }
     }
   }
