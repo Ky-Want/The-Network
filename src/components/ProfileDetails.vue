@@ -3,18 +3,22 @@
     <img :src="profile.picture" alt="" height="120">
     <div class="my-5">
       <h3 class="">{{ profile.name }}
-        <!-- TODO: add remaining links -->
-        <a v-if="profile.github" :href="profile.github" target="_blank"> -->
-          <i class="mdi mdi-deviantart selectable"></i>
-        </a>
 
-        <a v-if="profile.email" :href="profile.email" target="_blank"> -->
-          <i class="mdi mdi-deviantart selectable"></i>
-        </a>
+        <div>
+          <!-- <a v-if="profile.graduated" :href="profile.github"><i class="fa-solid fa-graduation-cap"></i></a> -->
 
-        <a v-if="profile.linkedin" :href="profile.linkedin" target="_blank"> -->
-          <i class="mdi mdi-deviantart selectable"></i>
-        </a>
+          <a v-if="profile.github" :href="profile.github" target="_blank"> -->
+            <i class="fa-brands fa-github selectable"></i>
+          </a>
+
+          <a v-if="profile.email" :href="profile.email" target="_blank"> -->
+            <i class=" fa-solid fa-envelope selectable"></i>
+          </a>
+
+          <a v-if="profile.linkedin" :href="profile.linkedin" target="_blank"> -->
+            <i class="fa-brands fa-linkedin selectable"></i>
+          </a>
+        </div>
 
       </h3>
       <p>{{profile.class}}</p>

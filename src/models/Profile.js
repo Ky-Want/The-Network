@@ -8,6 +8,7 @@ export class Profile {
 
     this.email = data.email
     this.github = data.github
+    this.class = data.class
     this.graduated = data.graduated
   }
 }
