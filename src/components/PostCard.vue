@@ -18,7 +18,7 @@
 
           {{post.name}}
           <div>
-            {{post.creator.updatedAt || post.creator.createdAt}}
+            {{new Date(post.createdAt).toLocaleDateString()}}
           </div>
 
 

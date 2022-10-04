@@ -41,6 +41,7 @@ class PostsService {
       }
     })
     AppState.posts = res.data.posts.map(p => new Post(p))
+    logger.log(AppState.posts, 'app posts')
     AppState.page = res.data.page
     AppState.lastPage = res.data.total_pages
     AppState.nextPage = res.data.older

@@ -6,6 +6,7 @@ export class Post {
     this.creatorId = data.creatorId
     this.likeIds = data.likeIds
     // this.creator = new Account(data.creator)
+    this.createdAt = data.createdAt
     this.creator = data.creator
   }
 
